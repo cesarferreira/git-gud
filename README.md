@@ -1,5 +1,5 @@
 # git-good
-> Utils for you to git goooooood
+> Tool to enhance your github workflow
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/cesarferreira/assets/master/images/screenshot_terminal_hello_world.png" width="100%" />
@@ -12,13 +12,25 @@
 ## Install
 
 ```sh
-yarn add git-good
+npm install -g git-good
 ```
 
 ## Usage
 
-```js
-// todo
+```
+Usage
+	  $ git-good <command>
+	Examples
+	  $ git-good open 					# opens repo page
+	  $ git-good issues 				# opens issues page
+	  $ git-good prs 						# opens pull requests page
+	  $ git-good pr 						# opens current pull request page
+	  $ git-good releases 			# opens releases page
+	  $ git-good branches 			# opens branches page
+	  $ git-good wiki 					# opens wiki page
+	  $ git-good settings 			# opens settings page
+	  $ git-good contributors		# opens contributors page
+	  $ git-good new-pr 				# opens new pull request page
 ```
 
 ## Created by
