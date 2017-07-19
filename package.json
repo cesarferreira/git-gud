@@ -1,0 +1,38 @@
+{
+  "name": "git-good",
+  "version": "0.0.0",
+  "description": "Utils for you to git goooooood",
+  "author": {
+    "name": "Cesar Ferreira",
+    "email": "cesar.manuel.ferreira@gmail.com",
+    "url": "http://cesarferreira.com"
+  },
+  "scripts": {
+    "start": "node cli.js",
+    "lint": "eslint src/**/*",
+    "test": "xo"
+  },
+  "bin": {
+    "git-good": "./cli.js"
+  },
+  "main": "cli.js",
+  "keywords": [],
+  "dependencies": {
+    "chalk": "^2.0.1",
+    "meow": "^3.7.0",
+    "node-time-log": "^1.0.3"
+  },
+  "devDependencies": {
+    "eslint": "^4.2.0",
+    "xo": "^0.18.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cesarferreira/git-good.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cesarferreira/git-good/issues"
+  },
+  "homepage": "https://github.com/cesarferreira/git-good#readme",
+  "license": "MIT"
+}
