@@ -2,7 +2,7 @@
 > Tool to enhance your github workflow
 
 <p align="center">
-  <img src="extras/both.png" width="100%" />
+  <img src="extras/both_crop.png" width="100%" />
 </p>
 
 [![Build Status](https://travis-ci.org/cesarferreira/git-good.svg?branch=master)](https://travis-ci.org/cesarferreira/git-good)
