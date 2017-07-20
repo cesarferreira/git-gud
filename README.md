@@ -2,7 +2,7 @@
 > Tool to enhance your github workflow
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/cesarferreira/assets/master/images/screenshot_terminal_hello_world.png" width="100%" />
+  <img src="extras/both.png" width="100%" />
 </p>
 
 [![Build Status](https://travis-ci.org/cesarferreira/git-good.svg?branch=master)](https://travis-ci.org/cesarferreira/git-good)
