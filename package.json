@@ -1,7 +1,7 @@
 {
   "name": "git-good",
   "version": "0.0.1",
-  "description": "Utils for you to git goooooood",
+  "description": "Tool to enhance your github workflow",
   "author": {
     "name": "Cesar Ferreira",
     "email": "cesar.manuel.ferreira@gmail.com",
@@ -19,8 +19,12 @@
   "keywords": [],
   "dependencies": {
     "chalk": "^2.0.1",
+    "git-branch": "^1.0.0",
+    "git-repo-name": "^0.6.0",
+    "git-username": "^0.5.0",
     "meow": "^3.7.0",
-    "node-time-log": "^1.0.3"
+    "node-time-log": "^1.0.3",
+    "opn": "^5.1.0"
   },
   "devDependencies": {
     "eslint": "^4.2.0",
