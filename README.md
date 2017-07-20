@@ -17,6 +17,14 @@ npm install -g git-good
 
 ## Usage
 
+**Highlights:**
+
+- **`$ good pr`**: 
+	- when you're in a project with dozens of `pull requests` it's tiresome to go to github and find which one is yours to check if something new is up, this will find the pull request number in which your current branch and open the page for you. 
+- **`$ good new-pr`**: 
+	- it's a tedious job to go to github, create new `pull request` and find the branch you've been working on and compare it to `develop`, this will automate it for you based on the branch you're currently on.
+
+
 ```
 $ good <command>
 
