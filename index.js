@@ -40,6 +40,11 @@ function open(url) {
 	});
 }
 
+function merda(params) {
+	// curl https://api.github.com/repos/github/hub/pulls
+	// https://github.com/github/hub/pull/1498
+}
+
 // Main code //
 module.exports = {
 	isValidCommand: command => {
