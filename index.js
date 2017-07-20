@@ -19,7 +19,7 @@ const possibleCommands = [
 	{command: 'wiki', url: 'https://github.com/{user}/{repo}/wiki'},
 	{command: 'settings', url: 'https://github.com/{user}/{repo}/settings'},
 	{command: 'contributors', url: 'https://github.com/{user}/{repo}/graphs/contributors'},
-	{command: 'new-pr', url: 'https://github.com/{user}/{repo}/compare?expand=1'}
+	{command: 'new-pr', url: 'https://github.com/{user}/{repo}/compare?expand=1'} // https://github.com/cesarferreira/git-good/compare/feature/{BRANCH}?expand=1 
 ];
 
 function getProperURL(url, user, repo) {
