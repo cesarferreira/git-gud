@@ -4,6 +4,7 @@ const opn = require('opn');
 const repoName = require('git-repo-name');
 const gitUsername = require('git-username');
 const branch = require('git-branch');
+const got = require('got');
 
 let mUsername = '';
 let mRepository = '';
@@ -13,17 +14,21 @@ const possibleCommands = [
 	{command: 'open', url: 'https://github.com/{user}/{repo}'},
 	{command: 'issues', url: 'https://github.com/{user}/{repo}/issues'},
 	{command: 'prs', url: 'https://github.com/{user}/{repo}/pulls'},
-	{command: 'pr', url: 'https://github.com/{user}/{repo}/pull/85'}, //  # find out which one
+	{command: 'pr', url: 'https://github.com/{user}/{repo}/pull/{id}'},
 	{command: 'releases', url: 'https://github.com/{user}/{repo}/releases'},
 	{command: 'branches', url: 'https://github.com/{user}/{repo}/branches'},
 	{command: 'wiki', url: 'https://github.com/{user}/{repo}/wiki'},
 	{command: 'settings', url: 'https://github.com/{user}/{repo}/settings'},
 	{command: 'contributors', url: 'https://github.com/{user}/{repo}/graphs/contributors'},
-	{command: 'new-pr', url: 'https://github.com/{user}/{repo}/compare?expand=1'} // https://github.com/cesarferreira/git-good/compare/feature/{BRANCH}?expand=1 
+	{command: 'new-pr', url: 'https://github.com/{user}/{repo}/compare/{branch}?expand=1'}
 ];
 
-function getProperURL(url, user, repo) {
-	return url.replace('{user}', user).replace('{repo}', repo);
+function getProperURL(item) {
+	return item.url
+			.replace('{user}', item.user)
+			.replace('{repo}', item.repo)
+			.replace('{id}', item.id)
+			.replace('{branch}', item.branch);
 }
 
 function getCommandFromArray(command) {
@@ -35,14 +40,31 @@ function getCommandFromArray(command) {
 }
 
 function open(url) {
-	opn(url).then(() => {
-		log(`opened: ${Chalk.green(url)}!`);
+	opn(url, {wait: false}).then(() => {
+		log(`Opened: ${Chalk.green(url)}!`);
 	});
 }
 
-function merda(params) {
-	// curl https://api.github.com/repos/github/hub/pulls
-	// https://github.com/github/hub/pull/1498
+function getPullRequestID(username, repo, branch) {
+	return got(`https://api.github.com/repos/${username}/${repo}/pulls`)
+		.then(response => {
+			return response.body;
+		})
+		.then(body => {
+			const parsedArray = JSON.parse(body);
+			let returnValue = -1;
+
+			parsedArray.forEach(item => {
+				if (item.head.ref === branch) {
+					returnValue = item.number;
+				}
+			});
+
+			return returnValue;
+		})
+		.catch(err => {
+			console.log(err);
+		});
 }
 
 // Main code //
@@ -58,9 +80,18 @@ module.exports = {
 
 		const result = getCommandFromArray(command);
 
-		log(`${mUsername}/${mRepository} - ${mBranch}`);
-		const properUrl = getProperURL(result.url, mUsername, mRepository);
-
-		open(properUrl);
+		let properUrl;
+		const urlTemplate = {url: result.url, user: mUsername, repo: mRepository, branch: mBranch};
+		if (command === 'pr') {
+			getPullRequestID(mUsername, mRepository, mBranch)
+				.then(id => {
+					urlTemplate.id = id;
+					properUrl = getProperURL(urlTemplate);
+					open(properUrl);
+				});
+		} else {
+			properUrl = getProperURL(urlTemplate);
+			open(properUrl);
+		}
 	}
 };
