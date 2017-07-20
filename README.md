@@ -18,19 +18,19 @@ npm install -g git-good
 ## Usage
 
 ```
-$ git-good <command>
+$ good <command>
 
  Examples
-   $ git-good open         # opens repo page
-   $ git-good issues       # opens issues page
-   $ git-good prs          # opens pull requests page
-   $ git-good pr           # opens current pull request page
-   $ git-good releases     # opens releases page
-   $ git-good branches     # opens branches page
-   $ git-good wiki         # opens wiki page
-   $ git-good settings     # opens settings page
-   $ git-good contributors # opens contributors page
-   $ git-good new-pr       # opens new pull request page
+   $ good open         # opens repo page
+   $ good issues       # opens issues page
+   $ good prs          # opens pull requests page
+   $ good pr           # opens current pull request page
+   $ good releases     # opens releases page
+   $ good branches     # opens branches page
+   $ good wiki         # opens wiki page
+   $ good settings     # opens settings page
+   $ good contributors # opens contributors page
+   $ good new-pr       # opens new pull request page
 ```
 
 ## Created by
