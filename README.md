@@ -24,21 +24,29 @@ npm install -g git-good
 - **`$ good new-pr`**: 
 	- it's a tedious job to go to github, create new `pull request` and find the branch you've been working on and compare it to `develop`, this will automate it for you based on the branch you're currently on.
 
-
 ```
 $ good <command>
 
  Examples
-   $ good open         # opens repo page
-   $ good issues       # opens issues page
-   $ good prs          # opens pull requests page
-   $ good pr           # opens current pull request page
-   $ good releases     # opens releases page
-   $ good branches     # opens branches page
-   $ good wiki         # opens wiki page
-   $ good settings     # opens settings page
-   $ good contributors # opens contributors page
-   $ good new-pr       # opens new pull request page
+   $ good pr             # opens current pull request page
+   $ good new-pr         # opens new pull request page
+   $ good prs            # opens pull requests page
+   $ good open           # opens repo page
+   $ good issues         # opens issues page
+   $ good branches       # opens branches page   
+   $ good releases       # opens releases page
+   $ good wiki           # opens wiki page
+   $ good settings       # opens settings page
+   $ good contributors   # opens contributors page
+```
+
+## Acessing private repositories
+If you want to access private repositories all you need to do is to create a **Personal API token** (instructions [here](https://github.com/blog/1509-personal-api-tokens))
+
+Once you got it just export it in your bash/zsh/fish profile.
+
+``` bash
+export GIT_GOOD=<your-token-here>
 ```
 
 ## Created by

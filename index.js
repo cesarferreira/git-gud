@@ -4,7 +4,7 @@ const opn = require('opn');
 const repoName = require('git-repo-name');
 const gitUsername = require('git-username');
 const branch = require('git-branch');
-const got = require('got');
+const GitHubApi = require("github");
 
 let mUsername = '';
 let mRepository = '';
@@ -46,25 +46,40 @@ function open(url) {
 }
 
 function getPullRequestID(username, repo, branch) {
-	return got(`https://api.github.com/repos/${username}/${repo}/pulls`)
-		.then(response => {
-			return response.body;
-		})
-		.then(body => {
-			const parsedArray = JSON.parse(body);
-			let returnValue = -1;
 
-			parsedArray.forEach(item => {
-				if (item.head.ref === branch) {
-					returnValue = item.number;
-				}
-			});
+	const github = new GitHubApi({
+			debug: false
+	});
 
-			return returnValue;
-		})
-		.catch(err => {
-			console.log(err);
+	const token = process.env.GIT_GOOD;
+
+	if (token) {
+		github.authenticate({
+			type: "basic",
+			username: username,
+			password: token
 		});
+	}
+
+	return github.pullRequests.getAll({
+		owner: username,
+		repo: repo
+	})
+	.then(response => {
+		const parsedArray = response.data;
+		let returnValue = -1;
+
+		parsedArray.forEach(item => {
+			if (item.head.ref === branch) {
+				returnValue = item.number;
+			}
+		});
+
+		return returnValue;
+	})
+	.catch(err => {
+		console.log(err);
+	});
 }
 
 // Main code //
@@ -85,9 +100,13 @@ module.exports = {
 		if (command === 'pr') {
 			getPullRequestID(mUsername, mRepository, mBranch)
 				.then(id => {
-					urlTemplate.id = id;
-					properUrl = getProperURL(urlTemplate);
-					open(properUrl);
+					if (id < 1 || !id) {
+						console.log(`${Chalk.red('something went wrong while getting the id, are you trying to access a private repo?\nread the README on the webpage to learn how to set it up')}\nhttps://github.com/cesarferreira/git-good#readme`);
+					} else {
+						urlTemplate.id = id;
+						properUrl = getProperURL(urlTemplate);
+						open(properUrl);
+					}
 				});
 		} else {
 			properUrl = getProperURL(urlTemplate);
