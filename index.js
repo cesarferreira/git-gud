@@ -4,7 +4,7 @@ const opn = require('opn');
 const repoName = require('git-repo-name');
 const gitUsername = require('git-username');
 const branch = require('git-branch');
-const GitHubApi = require("github");
+const GitHubApi = require('github');
 
 let mUsername = '';
 let mRepository = '';
@@ -46,24 +46,23 @@ function open(url) {
 }
 
 function getPullRequestID(username, repo, branch) {
-
 	const github = new GitHubApi({
-			debug: false
+		debug: false
 	});
 
 	const token = process.env.GIT_GOOD;
 
 	if (token) {
 		github.authenticate({
-			type: "basic",
-			username: username,
+			type: 'basic',
+			username,
 			password: token
 		});
 	}
 
 	return github.pullRequests.getAll({
 		owner: username,
-		repo: repo
+		repo
 	})
 	.then(response => {
 		const parsedArray = response.data;
