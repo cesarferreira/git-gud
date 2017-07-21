@@ -12,7 +12,9 @@
 ## Install
 
 ```sh
-npm install -g git-good
+npm install --global git-good
+# or
+yarn global add git-good
 ```
 
 ## Usage

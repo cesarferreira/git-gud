@@ -7,6 +7,7 @@ const lib = require('./index.js');
 const cli = meow(`
  Usage
    $ good <command>
+   
  Examples
    $ good pr             # opens current pull request page
    $ good new-pr         # opens new pull request page
