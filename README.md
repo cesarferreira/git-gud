@@ -21,25 +21,26 @@ yarn global add git-good
 
 **Highlights:**
 
-- **`$ git-good pr`**: 
+- **`$ gud pr`**: 
 	- when you're in a project with dozens of `pull requests` it's tiresome to go to github and find which one is yours to check if something new is up, this will find the pull request number in which your current branch and open the page for you. 
-- **`$ git-good new-pr`**: 
+- **`$ gud new pr`**: 
 	- it's a tedious job to go to github, create new `pull request` and find the branch you've been working on and compare it to `develop`, this will automate it for you based on the branch you're currently on.
 
 ```
-$ git-good <command>
+Usage
+$ gud <command>
 
  Examples
-   $ git-good pr             # opens current pull request page
-   $ git-good new-pr         # opens new pull request page
-   $ git-good prs            # opens pull requests page
-   $ git-good open           # opens repo page
-   $ git-good issues         # opens issues page
-   $ git-good branches       # opens branches page   
-   $ git-good releases       # opens releases page
-   $ git-good wiki           # opens wiki page
-   $ git-good settings       # opens settings page
-   $ git-good contributors   # opens contributors page
+   $ gud pr             # opens current pull request page
+   $ gud new pr         # opens new pull request page
+   $ gud prs            # opens pull requests page
+   $ gud open           # opens repo page
+   $ gud issues         # opens issues page
+   $ gud branches       # opens branches page   
+   $ gud releases       # opens releases page
+   $ gud wiki           # opens wiki page
+   $ gud settings       # opens settings page
+   $ gud contributors   # opens contributors page
 ```
 
 ## Acessing private repositories

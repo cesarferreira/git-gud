@@ -13,7 +13,7 @@
     "test": "xo"
   },
   "bin": {
-    "git-good": "./cli.js"
+    "gud": "./cli.js"
   },
   "main": "cli.js",
   "keywords": [],

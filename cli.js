@@ -6,19 +6,20 @@ const lib = require('./index.js');
 
 const cli = meow(`
  Usage
-   $ git-good <command>
-   
+   $ gud <command>
+
  Examples
-   $ git-good pr             # opens current pull request page
-   $ git-good new-pr         # opens new pull request page
-   $ git-good prs            # opens pull requests page
-   $ git-good open           # opens repo page
-   $ git-good issues         # opens issues page
-   $ git-good branches       # opens branches page   
-   $ git-good releases       # opens releases page
-   $ git-good wiki           # opens wiki page
-   $ git-good settings       # opens settings page
-   $ git-good contributors   # opens contributors page`,
+   $ gud pr             # opens current pull request page
+   $ gud new pr         # opens new pull request page
+   $ gud prs            # opens pull requests page
+   $ gud open           # opens repo page
+   $ gud issues         # opens issues page
+   $ gud branches       # opens branches page   
+   $ gud releases       # opens releases page
+   $ gud wiki           # opens wiki page
+   $ gud settings       # opens settings page
+   $ gud contributors   # opens contributors page
+`,
 {});
 
 if (cli.input.length > 0 && lib.isValidCommand(cli.input[0])) {

@@ -20,7 +20,7 @@ const possibleCommands = [
 	{command: 'wiki', url: 'https://github.com/{user}/{repo}/wiki'},
 	{command: 'settings', url: 'https://github.com/{user}/{repo}/settings'},
 	{command: 'contributors', url: 'https://github.com/{user}/{repo}/graphs/contributors'},
-	{command: 'new-pr', url: 'https://github.com/{user}/{repo}/compare/{branch}?expand=1'}
+	{command: 'new pr', url: 'https://github.com/{user}/{repo}/compare/{branch}?expand=1'}
 ];
 
 function getProperURL(item) {
@@ -32,10 +32,7 @@ function getProperURL(item) {
 }
 
 function getCommandFromArray(command) {
-	const found = possibleCommands
-		.filter(item => {
-			return item.command === command;
-		});
+	const found = possibleCommands.filter(item => item.command === command);
 	return found.length === 0 ? {} : found[0];
 }
 
@@ -46,9 +43,7 @@ function open(url) {
 }
 
 function getPullRequestID(username, repo, branch) {
-	const github = new GitHubApi({
-		debug: false
-	});
+	const github = new GitHubApi({ debug: false });
 
 	const token = process.env.GIT_GOOD;
 
@@ -95,7 +90,9 @@ module.exports = {
 		const result = getCommandFromArray(command);
 
 		let properUrl;
+
 		const urlTemplate = {url: result.url, user: mUsername, repo: mRepository, branch: mBranch};
+		
 		if (command === 'pr') {
 			getPullRequestID(mUsername, mRepository, mBranch)
 				.then(id => {
