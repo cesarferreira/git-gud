@@ -42,8 +42,12 @@ function open(url) {
 	});
 }
 
+function openWithTemplate(urlTemplate) {	
+	open(getProperURL(urlTemplate));
+}
+
 function getPullRequestID(username, repo, branch) {
-	const github = new GitHubApi({ debug: false });
+	const github = new GitHubApi({debug: false});
 
 	const token = process.env.GIT_GOOD;
 
@@ -92,7 +96,7 @@ module.exports = {
 		let properUrl;
 
 		const urlTemplate = {url: result.url, user: mUsername, repo: mRepository, branch: mBranch};
-		
+
 		if (command === 'pr') {
 			getPullRequestID(mUsername, mRepository, mBranch)
 				.then(id => {
@@ -100,13 +104,11 @@ module.exports = {
 						console.log(`${Chalk.red('something went wrong while getting the id, are you trying to access a private repo?\nread the README on the webpage to learn how to set it up')}\nhttps://github.com/cesarferreira/git-good#readme`);
 					} else {
 						urlTemplate.id = id;
-						properUrl = getProperURL(urlTemplate);
-						open(properUrl);
+						openWithTemplate(urlTemplate);
 					}
 				});
 		} else {
-			properUrl = getProperURL(urlTemplate);
-			open(properUrl);
+			openWithTemplate(urlTemplate);
 		}
 	}
 };
