@@ -3,6 +3,7 @@
 
 const meow = require('meow');
 const lib = require('./app.js');
+const log = console.log;
 
 const cli = meow(`
  Usage
@@ -22,8 +23,8 @@ const cli = meow(`
 `,
 {});
 
-if (cli.input.length > 0 && lib.isValidCommand(cli.input[0])) {
-	lib.init(cli.input[0]);
+if (cli.input.length > 0 && lib.isValidCommand(cli.input)) {
+	lib.init(cli.input);
 } else {
 	cli.showHelp(2);
 }

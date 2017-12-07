@@ -18,14 +18,13 @@ function getProperURL(item) {
 }
 
 function getCommandFromArray(command) {
-	const found = possibleCommands.filter(item => item.command === command);
+	command = command.join(' ')
+	const found = possibleCommands.filter(item => item.command == command);
 	return found.length === 0 ? {} : found[0];
 }
 
 function open(url) {
-	// opn(url, {wait: false}).then(() => {
-		// log(url);
-	// });
+	opn(url, {wait: false});
 }
 
 function openWithTemplate(urlTemplate, message) {
