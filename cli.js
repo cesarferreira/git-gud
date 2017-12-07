@@ -20,6 +20,9 @@ const cli = meow(`
    $ gud wiki           # opens wiki page
    $ gud settings       # opens settings page
    $ gud contributors   # opens contributors page
+
+   $ gud jira           # opens the JIRA ticket page
+   $ gud jenkins        # opens the jenkins job page
 `,
 {});
 

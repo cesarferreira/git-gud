@@ -36,7 +36,7 @@ function openWithTemplate(urlTemplate, message) {
 function getPullRequest(username, repo, branch) {
 	const github = new GitHubApi({debug: false});
 
-	const token = process.env.GIT_GOOD;
+	const token = process.env.GIT_GUD;
 
 	if (token) {
 		github.authenticate({
@@ -88,7 +88,12 @@ function currentPullRequest(username, repository, branch) {
 		getPullRequest(username, repository, branch)
 		.then(pr => {
 			if (pr.number < 1 || !pr.number) {
-				reject(`${Chalk.red('something went wrong while getting the id, are you trying to access a private repo?\nread the README on the webpage to learn how to set it up')}\nhttps://github.com/cesarferreira/git-gud#readme`);
+				const errorMessage = 'Something went wrong while getting the pull request number, are you:'
+				+'\n- Trying to access a private repo that you don\'t have access to?'
+				+'\n- Looking for a repo that doesn\'t have a pull request created yet?'
+
+				+ `\n\nRead the README to learn how to set it up https://github.com/cesarferreira/git-gud#readme`
+				reject(errorMessage);
 			} else {
 				resolve(pr);
 			}

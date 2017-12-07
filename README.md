@@ -39,15 +39,18 @@ $ gud <command>
    $ gud wiki           # opens wiki page
    $ gud settings       # opens settings page
    $ gud contributors   # opens contributors page
+   
+   $ gud jira           # opens the JIRA ticket page
+   $ gud jenkins        # opens the jenkins job page
 ```
 
 ## Acessing private repositories
-If you want to access private repositories all you need to do is to create a **Personal API token** (instructions [here](https://github.com/blog/1509-personal-api-tokens))
+If you want to access private repositories or the API limit has been reached, all you need to do is to create a **Personal API token** (instructions [here](https://github.com/blog/1509-personal-api-tokens))
 
-Once you got it just export it in your bash/zsh/fish profile.
+Once you got it just export it in your `bash`/`zsh`/`fish` profile.
 
-``` bash
-export GIT_GOOD=<your-token-here>
+```bash
+export GIT_GUD=<your-token-here>
 ```
 
 ## Created by
