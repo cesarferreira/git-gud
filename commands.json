@@ -1,0 +1,62 @@
+[
+	{
+		"command": "open", 
+		"url": "https://github.com/{user}/{repo}", 
+		"message": "Opening github URL"
+	},
+	{
+		"command": "issues", 
+		"url": "https://github.com/{user}/{repo}/issues", 
+		"message": "Opening issues"
+	},
+	{
+		"command": "prs", 
+		"url": "https://github.com/{user}/{repo}/pulls", 
+		"message": "Opening pull requests page"
+	},
+	{
+		"command": "pr", 
+		"url": "https://github.com/{user}/{repo}/pull/{id}", 
+		"message": "Opening the pull request page"
+	},
+	{
+		"command": "releases", 
+		"url": "https://github.com/{user}/{repo}/releases", 
+		"message": "Opening the releases page"
+	},
+	{
+		"command": "branches", 
+		"url": "https://github.com/{user}/{repo}/branches", 
+		"message": "Opening the branches page"
+	},
+	{
+		"command": "wiki", 
+		"url": "https://github.com/{user}/{repo}/wiki", 
+		"message": "Opening the wiki page"
+	},
+	{
+		"command": "settings", 
+		"url": "https://github.com/{user}/{repo}/settings", 
+		"message": "Opening the settings page"
+	},
+	{
+		"command": "contributors", 
+		"url": "https://github.com/{user}/{repo}/graphs/contributors", 
+		"message": "Opening the contributors page"
+	},
+	{
+		"command": "new pr", 
+		"url": "https://github.com/{user}/{repo}/compare/{branch}?expand=1", 
+		"message": "Creating a new pull request"
+	},
+	{
+		"command": "jenkins", 
+		"url": "http://jenkins.ced.ethan.bskyb.com:8080/job/Uma_Developers/job/Uma-github/job/PR-{id}/", 
+		"message": "Opening jenkins page"
+	},
+	{
+		"command": "jira", 
+		"url": "https://www.stb.bskyb.com/jira/browse/{jira_ticket_number}", 
+		"message": "Opening the jira page"
+	}
+]

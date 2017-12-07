@@ -1,33 +1,19 @@
 const Chalk = require('chalk');
-const log = require('node-time-log').SimpleLog;
+const log = console.log;
 const opn = require('opn');
 const repoName = require('git-repo-name');
 const gitUsername = require('git-username');
-const branch = require('git-branch');
+const GitBranch = require('git-branch');
 const GitHubApi = require('github');
 
-let mUsername = '';
-let mRepository = '';
-let mBranch = '';
-
-const possibleCommands = [
-	{command: 'open', url: 'https://github.com/{user}/{repo}'},
-	{command: 'issues', url: 'https://github.com/{user}/{repo}/issues'},
-	{command: 'prs', url: 'https://github.com/{user}/{repo}/pulls'},
-	{command: 'pr', url: 'https://github.com/{user}/{repo}/pull/{id}'},
-	{command: 'releases', url: 'https://github.com/{user}/{repo}/releases'},
-	{command: 'branches', url: 'https://github.com/{user}/{repo}/branches'},
-	{command: 'wiki', url: 'https://github.com/{user}/{repo}/wiki'},
-	{command: 'settings', url: 'https://github.com/{user}/{repo}/settings'},
-	{command: 'contributors', url: 'https://github.com/{user}/{repo}/graphs/contributors'},
-	{command: 'new pr', url: 'https://github.com/{user}/{repo}/compare/{branch}?expand=1'}
-];
+const possibleCommands = require('./commands.json');
 
 function getProperURL(item) {
 	return item.url
 			.replace('{user}', item.user)
 			.replace('{repo}', item.repo)
 			.replace('{id}', item.id)
+			.replace('{jira_ticket_number}', item.jira_ticket_number)
 			.replace('{branch}', item.branch);
 }
 
@@ -37,16 +23,18 @@ function getCommandFromArray(command) {
 }
 
 function open(url) {
-	opn(url, {wait: false}).then(() => {
-		log(`Opened: ${Chalk.green(url)}!`);
-	});
+	// opn(url, {wait: false}).then(() => {
+		// log(url);
+	// });
 }
 
-function openWithTemplate(urlTemplate) {	
-	open(getProperURL(urlTemplate));
+function openWithTemplate(urlTemplate, message) {
+	const url = getProperURL(urlTemplate);
+	log(`${Chalk.green(message)}: ${url}`);
+	open(url);
 }
 
-function getPullRequestID(username, repo, branch) {
+function getPullRequest(username, repo, branch) {
 	const github = new GitHubApi({debug: false});
 
 	const token = process.env.GIT_GOOD;
@@ -69,14 +57,43 @@ function getPullRequestID(username, repo, branch) {
 
 		parsedArray.forEach(item => {
 			if (item.head.ref === branch) {
-				returnValue = item.number;
+				returnValue = item;
+				return;
 			}
 		});
 
 		return returnValue;
 	})
-	.catch(err => {
-		console.log(err);
+	.catch(err => log(err));
+}
+
+function getJiraTicketNumber(branchName) {
+	return new Promise((resolve, reject) => {
+		if (branchName.toLowerCase().indexOf('ngdev') === -1) {
+			reject('no NGDEV found')
+		}
+		
+		const found = branchName.match(/(ngdev-\d+(\.\d)*)/i);
+		const foundIt = found !== null && found.length > 0 && found[0] !== undefined;
+		
+		if (foundIt) {
+			resolve(found[0].toUpperCase())
+		} else {
+			reject(`Can't find NGDEV`);
+		}
+	});
+}
+
+function currentPullRequest(username, repository, branch) {
+	return new Promise((resolve, reject) => {
+		getPullRequest(username, repository, branch)
+		.then(pr => {
+			if (pr.number < 1 || !pr.number) {
+				reject(`${Chalk.red('something went wrong while getting the id, are you trying to access a private repo?\nread the README on the webpage to learn how to set it up')}\nhttps://github.com/cesarferreira/git-good#readme`);
+			} else {
+				resolve(pr);
+			}
+		});
 	});
 }
 
@@ -86,29 +103,48 @@ module.exports = {
 		const result = getCommandFromArray(command);
 		return Object.keys(result).length !== 0;
 	},
-	init: command => {
-		mBranch = branch.sync();
-		mUsername = gitUsername();
-		mRepository = repoName.sync();
+	init: input => {
+		const branch = GitBranch.sync();
+		const username = gitUsername();
+		const repository = repoName.sync();
 
-		const result = getCommandFromArray(command);
+		const task = getCommandFromArray(input);
+		const urlTemplate = {url: task.url, user: username, repo: repository, branch: branch};
 
-		let properUrl;
-
-		const urlTemplate = {url: result.url, user: mUsername, repo: mRepository, branch: mBranch};
-
-		if (command === 'pr') {
-			getPullRequestID(mUsername, mRepository, mBranch)
-				.then(id => {
-					if (id < 1 || !id) {
-						console.log(`${Chalk.red('something went wrong while getting the id, are you trying to access a private repo?\nread the README on the webpage to learn how to set it up')}\nhttps://github.com/cesarferreira/git-good#readme`);
-					} else {
-						urlTemplate.id = id;
-						openWithTemplate(urlTemplate);
-					}
-				});
+			// PR
+		if (task.command === 'pr') {
+			currentPullRequest(username, repository, branch)
+				.then(pr => {
+					urlTemplate.id = pr.number;
+					openWithTemplate(urlTemplate, task.message);
+				})
+				.catch(err => log(err));
+		
+			// JENKINS
+		} else if(task.command === 'jenkins') {
+			currentPullRequest(username, repository, branch)
+			.then(pr => {
+				urlTemplate.id = pr.number;
+				openWithTemplate(urlTemplate, task.message);
+			})
+			.catch(err => log(err));
+		
+			// JIRA
+		} else if(task.command === 'jira') {
+			currentPullRequest(username, repository, branch)
+			.then(pr => {
+				getJiraTicketNumber(pr.head.ref)
+				.then(jiraTicket => {
+					urlTemplate.jira_ticket_number = jiraTicket;
+					openWithTemplate(urlTemplate, task.message);
+				})
+				.catch(err => log(err));				
+			})
+			.catch(err => log(err));
+		
+			// anything else
 		} else {
-			openWithTemplate(urlTemplate);
+			openWithTemplate(urlTemplate, task.message);
 		}
 	}
 };

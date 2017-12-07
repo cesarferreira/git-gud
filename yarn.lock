@@ -316,10 +316,6 @@ d@1:
   dependencies:
     es5-ext "^0.10.9"
 
-dateformat@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/dateformat/-/dateformat-2.0.0.tgz#2743e3abb5c3fc2462e527dca445e04e9f4dee17"
-
 debug@2, debug@^2.1.1, debug@^2.2.0, debug@^2.6.8:
   version "2.6.8"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.8.tgz#e731531ca2ede27d188222427da17821d68ff4fc"
@@ -1432,13 +1428,6 @@ natural-compare@^1.4.0:
 netrc@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/netrc/-/netrc-0.1.4.tgz#6be94fcaca8d77ade0a9670dc460914c94472444"
-
-node-time-log@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/node-time-log/-/node-time-log-1.0.3.tgz#7cdb01c8b66f966050328aa8959fa62700b4e968"
-  dependencies:
-    chalk "^2.0.1"
-    dateformat "^2.0.0"
 
 normalize-package-data@^2.3.2, normalize-package-data@^2.3.4:
   version "2.4.0"
