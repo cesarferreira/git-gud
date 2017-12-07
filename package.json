@@ -1,5 +1,5 @@
 {
-  "name": "git-good",
+  "name": "git-gud",
   "version": "1.4.1",
   "description": "Tool to enhance your github workflow",
   "author": {
@@ -32,11 +32,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/cesarferreira/git-good.git"
+    "url": "https://github.com/cesarferreira/git-gud.git"
   },
   "bugs": {
-    "url": "https://github.com/cesarferreira/git-good/issues"
+    "url": "https://github.com/cesarferreira/git-gud/issues"
   },
-  "homepage": "https://github.com/cesarferreira/git-good#readme",
+  "homepage": "https://github.com/cesarferreira/git-gud#readme",
   "license": "MIT"
 }

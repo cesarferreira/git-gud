@@ -1,18 +1,18 @@
-# git-good
+# git-gud
 > Tool to enhance your github workflow
 
 <p align="center">
   <img src="extras/both_crop.png" width="100%" />
 </p>
 
-[![Build Status](https://travis-ci.org/cesarferreira/git-good.svg?branch=master)](https://travis-ci.org/cesarferreira/git-good)
-[![npm](https://img.shields.io/npm/dt/git-good.svg)](https://www.npmjs.com/package/git-good)
-[![npm](https://img.shields.io/npm/v/git-good.svg)](https://www.npmjs.com/package/git-good)
+[![Build Status](https://travis-ci.org/cesarferreira/git-gud.svg?branch=master)](https://travis-ci.org/cesarferreira/git-gud)
+[![npm](https://img.shields.io/npm/dt/git-gud.svg)](https://www.npmjs.com/package/git-gud)
+[![npm](https://img.shields.io/npm/v/git-gud.svg)](https://www.npmjs.com/package/git-gud)
 
 ## Install
 
 ```sh
-npm install -g git-good
+npm install -g git-gud
 ```
 
 ## Usage

@@ -88,7 +88,7 @@ function currentPullRequest(username, repository, branch) {
 		getPullRequest(username, repository, branch)
 		.then(pr => {
 			if (pr.number < 1 || !pr.number) {
-				reject(`${Chalk.red('something went wrong while getting the id, are you trying to access a private repo?\nread the README on the webpage to learn how to set it up')}\nhttps://github.com/cesarferreira/git-good#readme`);
+				reject(`${Chalk.red('something went wrong while getting the id, are you trying to access a private repo?\nread the README on the webpage to learn how to set it up')}\nhttps://github.com/cesarferreira/git-gud#readme`);
 			} else {
 				resolve(pr);
 			}
