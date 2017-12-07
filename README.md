@@ -2,7 +2,7 @@
 > Tool to enhance your github workflow
 
 <p align="center">
-  <img src="extras/both_crop.png" width="100%" />
+  <img src="extras/overlapping_cut.png" width="100%" />
 </p>
 
 [![Build Status](https://travis-ci.org/cesarferreira/git-gud.svg?branch=master)](https://travis-ci.org/cesarferreira/git-gud)
@@ -39,7 +39,7 @@ $ gud <command>
    $ gud wiki           # opens wiki page
    $ gud settings       # opens settings page
    $ gud contributors   # opens contributors page
-   
+
    $ gud jira           # opens the JIRA ticket page
    $ gud jenkins        # opens the jenkins job page
 ```
