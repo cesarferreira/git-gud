@@ -1,13 +1,17 @@
 # git-gud
 > Tool to enhance your github workflow
 
+
+<p align="left">
+  <a href="https://travis-ci.org/cesarferreira/git-gud"><img src="https://travis-ci.org/cesarferreira/git-gud.svg?branch=master" alt="Build Status"></a>
+  <a href="https://www.npmjs.com/package/git-gud"><img src="https://img.shields.io/npm/dt/git-gud.svg" alt="npm"></a>
+  <a href="https://www.npmjs.com/package/git-gud"><img src="https://img.shields.io/npm/v/git-gud.svg" alt="npm"></a>
+  <a href="https://github.com/cesarferreira/git-gud/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
+</p>
+
 <p align="center">
   <img src="extras/overlapping_cut.png" width="100%" />
 </p>
-
-[![Build Status](https://travis-ci.org/cesarferreira/git-gud.svg?branch=master)](https://travis-ci.org/cesarferreira/git-gud)
-[![npm](https://img.shields.io/npm/dt/git-gud.svg)](https://www.npmjs.com/package/git-gud)
-[![npm](https://img.shields.io/npm/v/git-gud.svg)](https://www.npmjs.com/package/git-gud)
 
 ## Install
 
