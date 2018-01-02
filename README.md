@@ -51,6 +51,8 @@ $ gud <command>
 ## Acessing private repositories
 If you want to access private repositories or the API limit has been reached, all you need to do is to create a **Personal API token** (instructions [here](https://github.com/blog/1509-personal-api-tokens))
 
+Give it the all the `repo` permissions and you're good to go!
+
 Once you got it just export it in your `bash`/`zsh`/`fish` profile.
 
 ```bash
