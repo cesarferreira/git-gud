@@ -22,7 +22,7 @@
     "git-branch": "^1.0.0",
     "git-repo-name": "^0.6.0",
     "git-username": "^0.5.0",
-    "github": "^9.2.0",
+    "github": "^14.0.0",
     "meow": "^3.7.0",
     "opn": "^5.1.0"
   },
