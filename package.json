@@ -27,8 +27,8 @@
     "opn": "^5.1.0"
   },
   "devDependencies": {
-    "eslint": "^4.2.0",
-    "xo": "^0.18.2"
+    "eslint": "^10.5.0",
+    "xo": "^3.0.2"
   },
   "repository": {
     "type": "git",
